@@ -1,2 +1,2 @@
-# godot-xr-template
-A bare bones template for getting started with XR in Godot
+# About
+This branch supports Godot v4.2+
