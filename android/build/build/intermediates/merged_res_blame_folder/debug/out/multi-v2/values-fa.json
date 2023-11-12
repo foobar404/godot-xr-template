@@ -1,0 +1,60 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.godot.game-mergeDebugResources-9:/values-fa/values-fa.xml",
+            "map": [
+                {
+                    "source": "/Users/austin/Documents/Godot Projects/VR Template/android/build/res/values-fa/godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "62",
+                        "endOffsets": "173"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/austin/.gradle/caches/transforms-3/d8176d39ed1d55a8ed3ce55e8a1dac87/transformed/jetified-godot-lib.template_debug/res/values-fa/values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,109,183,241,301,370,440,618,791,893,972",
+                        "endColumns": "53,73,57,59,68,69,177,172,101,78,70",
+                        "endOffsets": "104,178,236,296,365,435,613,786,888,967,1038"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "222,276,350,408,468,537,607,785,958,1060,1139",
+                        "endColumns": "53,73,57,59,68,69,177,172,101,78,70",
+                        "endOffsets": "271,345,403,463,532,602,780,953,1055,1134,1205"
+                    }
+                },
+                {
+                    "source": "/Users/austin/.gradle/caches/transforms-3/9bcb1a65f5938aad264f4d73e9a06f28/transformed/core-1.2.0/res/values-fa/values-fa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endColumns": "100",
+                        "endOffsets": "217"
+                    }
+                }
+            ]
+        }
+    ]
+}

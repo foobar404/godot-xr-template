@@ -1,0 +1,177 @@
+[gd_scene load_steps=21 format=3 uid="uid://qqbef78djy1a"]
+
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="1_mc2sj"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="2_tjxr8"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_4ybpe"]
+[ext_resource type="PackedScene" uid="uid://cc6ngdqie8o8c" path="res://addons/godot-xr-tools/effects/vignette.tscn" id="3_s41o5"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_1fr8q"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="5_v1dg0"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="6_yb2wo"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="7_7ivvv"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="8_oiasw"]
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="9_004y3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sfivb"]
+sky_top_color = Color(0.831373, 0.929412, 0.945098, 1)
+
+[sub_resource type="Sky" id="Sky_b7sf5"]
+sky_material = SubResource("ProceduralSkyMaterial_sfivb")
+
+[sub_resource type="Environment" id="Environment_dd6au"]
+background_mode = 2
+sky = SubResource("Sky_b7sf5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4h31"]
+albedo_color = Color(0.819608, 0.34902, 0.898039, 1)
+metallic = 1.0
+metallic_specular = 0.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xtt76"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voqdy"]
+albedo_color = Color(0.27451, 0.580392, 0.482353, 1)
+metallic_specular = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aa2o7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r36l5"]
+transparency = 1
+albedo_color = Color(0.905882, 0.211765, 0.537255, 0.760784)
+roughness = 0.33
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3s6xt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m037r"]
+size = Vector3(20, 1, 20)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dd6au")
+
+[node name="XRSimulator" parent="." instance=ExtResource("1_mc2sj")]
+xr_origin = NodePath("../XROrigin3D")
+
+[node name="StartXR" parent="." instance=ExtResource("2_tjxr8")]
+
+[node name="Menu" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36487, 0)
+
+[node name="SubViewport" type="SubViewport" parent="Menu"]
+process_mode = 3
+
+[node name="UI" type="Panel" parent="Menu/SubViewport"]
+offset_right = 1178.0
+offset_bottom = 658.0
+
+[node name="HSeparator" type="HSeparator" parent="Menu/SubViewport/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="Label" type="Label" parent="Menu/SubViewport/UI/HSeparator"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 26.0
+text = "Toggle Vignette"
+
+[node name="CheckBox" type="CheckBox" parent="Menu/SubViewport/UI/HSeparator"]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 148.0
+offset_bottom = 24.0
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/SubViewport/UI"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="Menu/SubViewport/UI/HSeparator2"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 26.0
+text = "Enable Snap to Turn"
+
+[node name="CheckBox" type="CheckBox" parent="Menu/SubViewport/UI/HSeparator2"]
+layout_mode = 0
+offset_left = 157.0
+offset_right = 181.0
+offset_bottom = 24.0
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.738715, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.8, 2.08165e-12)
+
+[node name="Vignette" parent="XROrigin3D/XRCamera3D" instance=ExtResource("3_s41o5")]
+process_mode = 4
+visible = false
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("3_4ybpe")]
+
+[node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("4_1fr8q")]
+strafe = true
+
+[node name="FunctionPickup" parent="XROrigin3D/LeftController" instance=ExtResource("5_v1dg0")]
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("6_yb2wo")]
+turn_mode = 2
+
+[node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("4_1fr8q")]
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("7_7ivvv")]
+
+[node name="FunctionPickup" parent="XROrigin3D/RightController" instance=ExtResource("5_v1dg0")]
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("8_oiasw")]
+
+[node name="DefaultEnvironment" type="Node3D" parent="."]
+
+[node name="Cylinder" parent="DefaultEnvironment" instance=ExtResource("9_004y3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97698, 1.47997, 5.87262)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="DefaultEnvironment/Cylinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+material = SubResource("StandardMaterial3D_l4h31")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DefaultEnvironment/Cylinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+shape = SubResource("CylinderShape3D_xtt76")
+
+[node name="Cube" parent="DefaultEnvironment" instance=ExtResource("9_004y3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04155, -6.6101)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DefaultEnvironment/Cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
+material = SubResource("StandardMaterial3D_voqdy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DefaultEnvironment/Cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
+shape = SubResource("BoxShape3D_aa2o7")
+
+[node name="Ball" parent="DefaultEnvironment" instance=ExtResource("9_004y3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92993, 1.03255, 1.94877)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="DefaultEnvironment/Ball"]
+material = SubResource("StandardMaterial3D_r36l5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DefaultEnvironment/Ball"]
+shape = SubResource("SphereShape3D_3s6xt")
+
+[node name="Floor" type="StaticBody3D" parent="DefaultEnvironment"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DefaultEnvironment/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -1.19207e-07, 2.08165e-12)
+size = Vector3(20, 1, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DefaultEnvironment/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+shape = SubResource("BoxShape3D_m037r")
